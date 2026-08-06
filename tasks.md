@@ -128,7 +128,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Configurar TypeScript estricto, scripts de desarrollo, build y test.
   - Terminado cuando: desarrollo, build, chequeo de tipos y smoke test trivial terminan correctamente.
 
-- [ ] **TASK-102 — Crear estructura, tipos base y contratos** **[Critical]**
+- [x] **TASK-102 — Crear estructura, tipos base y contratos** **[Critical]**
   - Depende de: TASK-101.
   - Requisitos: REQ-STATE-001, REQ-DATA-001.
   - Crear contratos para estados, Challenges, Encounters, Enemies, estadísticas, localización, assets y secuencia final.

@@ -142,7 +142,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Agregar pruebas para datos válidos, referencias rotas, categorías incorrectas y claves faltantes.
   - Terminado cuando: agrega todos los errores y bloquea datos inválidos de forma determinista.
 
-- [ ] **TASK-104 — Crear AssetManifest y AssetRegistry** **[Critical]**
+- [x] **TASK-104 — Crear AssetManifest y AssetRegistry** **[Critical]**
   - Depende de: TASK-102.
   - Requisitos: REQ-BOOT-001, REQ-DELIVERY-001.
   - Registrar fuente, Player, Enemies, Projectiles, tilemaps, UI, V4LK, corrupción y extracción.

@@ -18,5 +18,5 @@ export interface LocaleBundle {
 }
 
 export interface SessionSettings {
-  readonly language: Language;
+  readonly language: Language | null;
 }

@@ -1,0 +1,21 @@
+{
+  "accessibility.languageSelector": "Selector de idioma",
+  "boot.error.detail": "No se pudo iniciar el demo. Código: {errorId}.",
+  "boot.error.retry": "Recarga la página para volver a intentarlo.",
+  "boot.error.retryLabel": "Recargar el demo",
+  "boot.error.title": "Error de inicio",
+  "boot.loading": "Cargando recursos… {progress}%",
+  "boot.loadingLabel": "Progreso de carga: {progress}%",
+  "font.validation.sample": "¿Qué pasó? ¡El pingüino pidió música rápida y difícil, té y jalapeño!",
+  "language.en.name": "English",
+  "language.es.name": "Español",
+  "languageSelect.confirm": "Confirmar",
+  "languageSelect.confirmLabel": "Confirmar idioma con {confirmKey}",
+  "languageSelect.help": "Usa las flechas y pulsa {confirmKey} para confirmar.",
+  "languageSelect.option.enLabel": "Seleccionar English",
+  "languageSelect.option.esLabel": "Seleccionar Español",
+  "languageSelect.title": "Selecciona tu idioma",
+  "menu.start": "Iniciar demo",
+  "menu.startLabel": "Iniciar el demo de {productTitle}",
+  "menu.title": "{productTitle}"
+}

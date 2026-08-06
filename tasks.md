@@ -149,7 +149,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Definir mapa entre assets aprobados y claves runtime; no renombrar masters originales.
   - Terminado cuando: las claves son únicas, los frames críticos están validados y no hay rutas externas de fuente.
 
-- [ ] **TASK-105 — Implementar LocalizationStore y datos iniciales** **[Critical]**
+- [x] **TASK-105 — Implementar LocalizationStore y datos iniciales** **[Critical]**
   - Depende de: TASK-102.
   - Requisitos: REQ-LOC-001, REQ-DATA-001.
   - Crear locales `es` y `en`, resolución de claves y `SessionSettings.language`.

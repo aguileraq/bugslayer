@@ -1,7 +1,7 @@
 # SPEC-001 — Foundation, Boot, precarga, idioma y menú
 
-- **Estado:** Borrador para aprobación
-- **Versión:** 0.1
+- **Estado:** Aprobado
+- **Versión:** 1.0
 - **Fecha:** 2026-08-06
 - **Tarea:** TASK-100
 - **Requisitos:** REQ-BOOT-001, REQ-LOC-001, REQ-MENU-001, REQ-DATA-001, REQ-DELIVERY-001
@@ -404,12 +404,12 @@ SPEC-001 se considera implementada cuando:
 
 Antes de marcar TASK-100 como completa deben confirmarse explícitamente:
 
-- [ ] ubicación `game/`;
-- [ ] versiones fijadas;
-- [ ] comandos normativos;
-- [ ] flujo Boot→LanguageSelect→Menu;
-- [ ] contrato de localización y persistencia de sesión;
-- [ ] política de error bloqueante;
-- [ ] criterios de aceptación y pruebas.
+- [x] ubicación `game/`;
+- [x] versiones fijadas;
+- [x] comandos normativos;
+- [x] flujo Boot→LanguageSelect→Menu;
+- [x] contrato de localización y persistencia de sesión;
+- [x] política de error bloqueante;
+- [x] criterios de aceptación y pruebas.
 
 La aprobación de esta SPEC autoriza iniciar TASK-101. No autoriza adelantar Office, gameplay ni contenido de SPEC-002.

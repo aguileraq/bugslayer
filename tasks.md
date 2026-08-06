@@ -109,7 +109,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - No incluir secretos, credenciales AWS ni variables privadas.
   - Terminado cuando: `main` local y remoto apuntan al mismo baseline.
 
-- [ ] **TASK-017 — Configurar protección y verificar flujo de PR** **[Supporting]**
+- [x] **TASK-017 — Configurar protección y verificar flujo de PR** **[Supporting]**
   - Depende de: TASK-016.
   - Proteger `main`, requerir checks disponibles y comprobar el template mediante un PR de prueba o el primer PR real.
   - Terminado cuando: el trabajo normal entra a `main` mediante Pull Request y Squash Merge.

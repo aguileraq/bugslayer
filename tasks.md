@@ -116,7 +116,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
 
 ## 6. Milestone 1 — SPEC-001, foundation, Boot e idioma
 
-- [ ] **TASK-100 — Crear y aprobar SPEC-001: foundation, Boot, precarga, idioma y menú** **[Critical]**
+- [x] **TASK-100 — Crear y aprobar SPEC-001: foundation, Boot, precarga, idioma y menú** **[Critical]**
   - Depende de: TASK-017.
   - Requisitos: REQ-BOOT-001, REQ-LOC-001, REQ-MENU-001, REQ-DATA-001, REQ-DELIVERY-001.
   - Incluir: ubicación del proyecto, versiones fijadas, comandos, flujo Boot→LanguageSelect→Menu, errores de carga y criterios de aceptación.

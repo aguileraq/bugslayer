@@ -102,7 +102,7 @@ Una PR entrega un resultado revisable y mantiene `main` funcional. Debe usar `.g
 
 Tamaño recomendado: lo bastante pequeño para revisar como una unidad. Un milestone completo suele requerir varias PR.
 
-Política de merge recomendada: **Squash Merge**. La PR debe tener checks aprobados, estar actualizada y no contener trabajo parcial oculto.
+Política de integración: todo cambio debe entrar a `main` mediante Pull Request y **Squash Merge**. Los pushes directos a `main`, los merge commits y el rebase merge no forman parte del flujo aceptado. La PR debe tener los checks configurados aprobados, estar actualizada y no contener trabajo parcial oculto.
 
 ## 6. Validaciones
 

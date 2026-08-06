@@ -156,7 +156,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Incluir caracteres españoles y separar texto técnico no traducible.
   - Terminado cuando: todas las claves iniciales existen en ambos idiomas y las pruebas detectan ausencias.
 
-- [ ] **TASK-106 — Implementar BootScene** **[Critical]**
+- [x] **TASK-106 — Implementar BootScene** **[Critical]**
   - Depende de: TASK-103, TASK-104, TASK-105.
   - Requisitos: REQ-BOOT-001.
   - Cargar Geist Pixel Square local, datos y recursos obligatorios; esperar disponibilidad real de la fuente.

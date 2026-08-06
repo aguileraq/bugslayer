@@ -122,7 +122,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Incluir: ubicación del proyecto, versiones fijadas, comandos, flujo Boot→LanguageSelect→Menu, errores de carga y criterios de aceptación.
   - Terminado cuando: la especificación está aprobada antes de crear código.
 
-- [ ] **TASK-101 — Crear scaffold del proyecto** **[Critical]**
+- [x] **TASK-101 — Crear scaffold del proyecto** **[Critical]**
   - Depende de: TASK-100.
   - Crear proyecto con Phaser, TypeScript, Vite y Vitest en la ubicación aprobada por SPEC-001.
   - Configurar TypeScript estricto, scripts de desarrollo, build y test.

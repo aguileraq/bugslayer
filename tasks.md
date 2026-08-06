@@ -103,7 +103,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Mensaje recomendado: `docs(baseline): establish SDD and repository workflow`.
   - Terminado cuando: el working tree queda limpio y el commit puede restaurar el baseline documental.
 
-- [ ] **TASK-016 — Crear remoto y publicar main** **[Supporting]**
+- [x] **TASK-016 — Crear remoto y publicar main** **[Supporting]**
   - Depende de: TASK-015.
   - Crear repositorio remoto vacío, configurar `origin` y publicar `main`.
   - No incluir secretos, credenciales AWS ni variables privadas.

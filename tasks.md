@@ -135,7 +135,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Excluir: BossPhase, Victory, inputLock y quinto Encounter.
   - Terminado cuando: los contratos representan el diseño v2.0 y compilan sin casts inseguros evitables.
 
-- [ ] **TASK-103 — Implementar DataValidator** **[Critical]**
+- [x] **TASK-103 — Implementar DataValidator** **[Critical]**
   - Depende de: TASK-102.
   - Requisitos: REQ-DATA-001.
   - Validar locales, Challenges, EncounterConfigs, ataques, manifiesto y FinalSequence.

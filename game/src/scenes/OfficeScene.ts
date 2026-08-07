@@ -61,7 +61,7 @@ export class OfficeScene extends Phaser.Scene {
   #phase: OfficePhase = 'wake-animation';
   #playerSprite?: Phaser.GameObjects.Sprite;
   #v4lkSprite?: Phaser.GameObjects.Sprite;
-  #dialogueContainer?: Phaser.GameObjects.Container;
+  #dialogueContainer: Phaser.GameObjects.Container | undefined = undefined;
   #dialogueText?: Phaser.GameObjects.Text;
   #dialogueSpeaker?: Phaser.GameObjects.Text;
   #currentDialogue: DialogueSequence | undefined = undefined;
@@ -71,9 +71,9 @@ export class OfficeScene extends Phaser.Scene {
   #exitZone?: CollisionRect;
   #c3Interacted = false;
   #v4lkComplete = false;
-  #c3Indicator?: Phaser.GameObjects.Rectangle;
+  #c3Indicator: Phaser.GameObjects.Rectangle | undefined = undefined;
   #c3BlinkTimer?: Phaser.Time.TimerEvent;
-  #promptText?: Phaser.GameObjects.Text;
+  #promptText: Phaser.GameObjects.Text | undefined = undefined;
   #spawnC4 = { x: 224, y: 256 };
   #v4lkSpawnPos = { x: 640, y: 288 };
 
@@ -108,7 +108,7 @@ export class OfficeScene extends Phaser.Scene {
     this.startWakeSequence();
   }
 
-  public update(_time: number, delta: number): void {
+  public override update(_time: number, delta: number): void {
     const state = this.#stateMachine.state;
 
     this.processInput(state);

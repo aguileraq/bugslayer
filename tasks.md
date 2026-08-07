@@ -183,7 +183,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Definir estados de la secuencia, colisiones, interacción C3, duración de carga y control de cámara.
   - Terminado cuando: recorrido C4→C3→V4LK tiene criterios de aceptación completos.
 
-- [ ] **TASK-201 — Preparar tilemap y recursos runtime de la oficina** **[Critical]**
+- [x] **TASK-201 — Preparar tilemap y recursos runtime de la oficina** **[Critical]**
   - Depende de: TASK-200.
   - Importar tileset, props, maquinaria, silla, Senior sentado, diálogos y V4LK mediante claves del manifiesto.
   - Definir capas visibles, colisiones, spawn C4, interacción C3 y salida.

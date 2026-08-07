@@ -306,7 +306,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Registrar la decisión en SPEC-004 y en sus JSON.
   - Terminado cuando: el resultado de cada Correct Answer es inequívoco.
 
-- [ ] **TASK-401 — Crear y aprobar SPEC-004: múltiples Enemies** **[Critical]**
+- [x] **TASK-401 — Crear y aprobar SPEC-004: múltiples Enemies** **[Critical]**
   - Depende de: TASK-400.
   - Requisitos: REQ-PROG-001, REQ-COMBAT-001, REQ-CHL-004.
   - Definir barras/estado, targeting, completionRule, daño y limpieza parcial.

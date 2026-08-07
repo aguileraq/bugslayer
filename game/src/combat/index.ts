@@ -5,5 +5,7 @@ export * from './CollisionSystem';
 export * from './EncounterManager';
 export * from './Enemy';
 export * from './InvulnerabilityTracker';
+export * from './MultipleChoiceModel';
 export * from './Projectile';
 export * from './ProjectilePool';
+export * from './TextInputModel';

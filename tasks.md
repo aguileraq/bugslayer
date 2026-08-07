@@ -346,7 +346,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Importar Arboleda, Boolean Beetle y tres Challenges Logic.
   - Terminado cuando: derrotarlo produce `finalSequenceReady`, no Victory.
 
-- [ ] **TASK-503 — Verificar los cuatro Encounters** **[Critical]**
+- [x] **TASK-503 — Verificar los cuatro Encounters** **[Critical]**
   - Depende de: TASK-502.
   - Recorrido continuo, transiciones, curación, Score, Streak, Challenge pools y limpieza.
   - Terminado cuando: los cuatro Encounters son completables consecutivamente.

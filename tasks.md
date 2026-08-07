@@ -317,7 +317,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Importar guarida, dos Enemies, Reassignment Volley, Scope Web y tres Challenges Variable.
   - Terminado cuando: ambas Widows respetan targeting y completionRule.
 
-- [ ] **TASK-403 — Implementar Cast Hornet** **[Critical]**
+- [x] **TASK-403 — Implementar Cast Hornet** **[Critical]**
   - Depende de: TASK-401.
   - Importar Router Aéreo, tres Enemies voladores, Type Sting, Casting Swarm y tres Challenges Type.
   - Terminado cuando: altura aérea, colisiones y completionRule son consistentes.

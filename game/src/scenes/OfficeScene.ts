@@ -74,8 +74,8 @@ export class OfficeScene extends Phaser.Scene {
   #c3Indicator: Phaser.GameObjects.Rectangle | undefined = undefined;
   #c3BlinkTimer?: Phaser.Time.TimerEvent;
   #promptText: Phaser.GameObjects.Text | undefined = undefined;
-  #spawnC4 = { x: 740, y: 350 };
-  #v4lkSpawnPos = { x: 560, y: 360 };
+  #spawnC4 = { x: 570, y: 380 };
+  #v4lkSpawnPos = { x: 380, y: 380 };
 
   public constructor() {
     super({ key: 'OfficeScene' });
@@ -251,14 +251,23 @@ export class OfficeScene extends Phaser.Scene {
       if (layerObj.name !== 'props' || layerObj.type !== 'objectgroup') continue;
       if (!Array.isArray(layerObj.objects)) continue;
 
-      // Map prop names to frame indices in the atlas (64×64 frames, 4×4 = 16 frames)
+      // Map prop names to frame indices in the atlas (64×64 frames, 4 cols × 4 rows = 16 frames)
+      // Atlas layout (each frame = 2×2 cells of 32px = 64×64):
+      // Frame 0: desk clean, Frame 1: desk w/drawer-left, Frame 2: desk w/drawer-right, Frame 3: desk w/computer
+      // Frame 4: chair front, Frame 5: chair left, Frame 6: chair right, Frame 7: chair back
+      // Frame 8: rack front, Frame 9: rack side, Frame 10: plant A, Frame 11: plant B
+      // Frame 12: AC-A (wide), Frame 13: AC-B (wide), Frame 14: drawers, Frame 15: cable module
       const propFrames: Record<string, number> = {
-        'chair-c4': 0,
-        'monitor-c4': 1,
-        'chair-c3': 0,
-        'monitor-c3': 1,
-        'plant-corner': 2,
-        'water-cooler': 3,
+        'desk-c3': 3,    // desk with computer (active terminal)
+        'desk-c4': 0,    // clean desk
+        'desk-c1': 0,    // clean desk
+        'desk-c2': 0,    // clean desk
+        'chair-c4': 4,   // chair facing front (Senior sits here)
+        'chair-c3': 5,   // chair facing left (retracted)
+        'rack': 8,       // server rack front
+        'rack-2': 9,     // server rack side
+        'plant': 10,     // tall plant
+        'ac-unit': 12,   // air conditioning
       };
 
       for (const obj of layerObj.objects) {
@@ -269,6 +278,26 @@ export class OfficeScene extends Phaser.Scene {
           .sprite(obj.x + obj.width / 2, obj.y + obj.height / 2, PROPS_KEY, frameIndex)
           .setDisplaySize(obj.width, obj.height)
           .setDepth(2);
+      }
+
+      // Render small monitor indicators (from machinery effects spritesheet)
+      for (const obj of layerObj.objects) {
+        if (obj.name === 'monitor-c3' || obj.name === 'monitor-c4') {
+          // Use machinery key for blinking monitors
+          if (this.textures.exists(MACHINERY_KEY)) {
+            const monitorSprite = this.add
+              .sprite(obj.x + obj.width / 2, obj.y + obj.height / 2, MACHINERY_KEY, 0)
+              .setDisplaySize(obj.width, obj.height)
+              .setDepth(3);
+
+            // C3 monitor blinks cyan (active), C4 stays off
+            if (obj.name === 'monitor-c3') {
+              monitorSprite.setTint(0x69f7ff);
+            } else {
+              monitorSprite.setAlpha(0.3);
+            }
+          }
+        }
       }
     }
   }

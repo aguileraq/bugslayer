@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 
 import { GAME_DIMENSIONS } from './foundation';
 import { BootScene } from './scenes/BootScene';
+import { DefeatScene } from './scenes/DefeatScene';
 import { LanguageSelectScene } from './scenes/LanguageSelectScene';
 import { MenuScene } from './scenes/MenuScene';
 import { OfficeScene } from './scenes/OfficeScene';
@@ -21,5 +22,5 @@ export const gameConfig: Phaser.Types.Core.GameConfig = {
     width: GAME_DIMENSIONS.width,
     height: GAME_DIMENSIONS.height,
   },
-  scene: [BootScene, LanguageSelectScene, MenuScene, OfficeScene],
+  scene: [BootScene, LanguageSelectScene, MenuScene, OfficeScene, DefeatScene],
 };

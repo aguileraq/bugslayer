@@ -6,6 +6,7 @@ export * from './EncounterManager';
 export * from './Enemy';
 export * from './InvulnerabilityTracker';
 export * from './MultipleChoiceModel';
+export * from './PauseController';
 export * from './PenaltyManager';
 export * from './Projectile';
 export * from './ProjectilePool';

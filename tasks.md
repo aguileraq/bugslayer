@@ -221,7 +221,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
 
 ## 8. Milestone 3 — SPEC-003 y vertical slice de Parse Mantis
 
-- [ ] **TASK-300 — Crear y aprobar SPEC-003: combate, Challenges y Parse Mantis** **[Critical]**
+- [x] **TASK-300 — Crear y aprobar SPEC-003: combate, Challenges y Parse Mantis** **[Critical]**
   - Depende de: TASK-206.
   - Requisitos: REQ-STATE-001, REQ-COMBAT-001, REQ-CHL-001 a REQ-CHL-005, REQ-PROG-001, REQ-TUT-001, REQ-SCORE-001, REQ-PAUSE-001, REQ-DEFEAT-001, REQ-RESET-001.
   - Terminado cuando: un Encounter completo tiene comportamiento y pruebas definidos antes de implementarse.

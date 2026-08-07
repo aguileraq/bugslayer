@@ -10,7 +10,7 @@ import { INITIAL_LOCALE_BUNDLES, INITIAL_LOCALES } from '../data';
 import { GAME_DIMENSIONS } from '../foundation';
 import type { AssetDefinition, FontAssetDefinition } from '../types';
 
-const LANGUAGE_SELECT_SCENE_KEY = 'LanguageSelectScene';
+const MENU_SCENE_KEY = 'MenuScene';
 const BOOT_BACKGROUND_KEY = 'ui.boot.background';
 const FONT_KEY = 'font.geist-pixel-square';
 const FALLBACK_FONT = 'monospace';
@@ -176,7 +176,7 @@ export class BootScene extends Phaser.Scene {
       locales: INITIAL_LOCALE_BUNDLES,
       loadedAssets: () => this.collectLoadedAssets(),
       loadFont: () => loadLocalFont(font),
-      onReady: () => this.scene.start(LANGUAGE_SELECT_SCENE_KEY),
+      onReady: () => this.scene.start(MENU_SCENE_KEY),
     });
     const result = await controller.run();
     if (!result.ok) this.showBlockingError(result);

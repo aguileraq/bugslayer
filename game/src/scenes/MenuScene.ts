@@ -36,14 +36,18 @@ export class MenuScene extends Phaser.Scene {
     if (data['settings'] instanceof SessionSettings) {
       this.#settings = data['settings'];
     } else {
-      // Fallback: create new settings (should not happen in normal flow)
       this.#settings = new SessionSettings();
     }
 
-    this.#localization = new LocalizationStore(
-      INITIAL_LOCALE_BUNDLES,
-      this.#settings,
-    );
+    // Menu can display before language is selected (first boot)
+    // In that case, use 'en' as display language for the menu only
+    if (!this.#settings.hasLanguage) {
+      const displaySettings = new SessionSettings();
+      displaySettings.setLanguage('en');
+      this.#localization = new LocalizationStore(INITIAL_LOCALE_BUNDLES, displaySettings);
+    } else {
+      this.#localization = new LocalizationStore(INITIAL_LOCALE_BUNDLES, this.#settings);
+    }
   }
 
   public create(): void {
@@ -57,20 +61,38 @@ export class MenuScene extends Phaser.Scene {
   private createLayout(): void {
     const centerX = GAME_DIMENSIONS.width / 2;
 
+    // Background image (menu background)
+    if (this.textures.exists('ui.menu.background')) {
+      this.add
+        .image(centerX, GAME_DIMENSIONS.height / 2, 'ui.menu.background')
+        .setDisplaySize(GAME_DIMENSIONS.width, GAME_DIMENSIONS.height)
+        .setDepth(0);
+    }
+
     // Panel background
     this.add
       .rectangle(centerX, GAME_DIMENSIONS.height / 2, 520, 380, COLORS.panelBackground, 0.9)
-      .setStrokeStyle(2, COLORS.panelBorder);
+      .setStrokeStyle(2, COLORS.panelBorder)
+      .setDepth(1);
+
+    // BugSlayer logo
+    if (this.textures.exists('ui.logo')) {
+      this.add
+        .image(centerX, 140, 'ui.logo')
+        .setDisplaySize(200, 200)
+        .setDepth(2);
+    }
 
     // Game title
     const title = this.translate('menu.title', { productTitle: APP_TITLE });
     this.add
-      .text(centerX, 170, title, {
+      .text(centerX, 260, title, {
         color: COLORS.title,
         fontFamily: FONT_FAMILY,
         fontSize: '48px',
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setDepth(2);
 
     // Focus indicator for start button
     this.#focusIndicator = this.add
@@ -102,15 +124,17 @@ export class MenuScene extends Phaser.Scene {
 
     this.#startText.on('pointerdown', () => this.activateStart());
 
-    // Language indicator (subtle)
-    const languageLabel = this.#settings?.language === 'es' ? 'Español' : 'English';
-    this.add
-      .text(centerX, 430, languageLabel, {
-        color: COLORS.subtitle,
-        fontFamily: FONT_FAMILY,
-        fontSize: '14px',
-      })
-      .setOrigin(0.5);
+    // Language indicator (only show if already selected)
+    if (this.#settings?.hasLanguage) {
+      const languageLabel = this.#settings.language === 'es' ? 'Español' : 'English';
+      this.add
+        .text(centerX, 430, languageLabel, {
+          color: COLORS.subtitle,
+          fontFamily: FONT_FAMILY,
+          fontSize: '14px',
+        })
+        .setOrigin(0.5);
+    }
   }
 
   private setupInput(): void {
@@ -127,10 +151,15 @@ export class MenuScene extends Phaser.Scene {
     // Visual feedback
     this.#startText?.setColor(COLORS.actionPressed);
 
-    // Emit startRun — transition to OfficeScene
     this.time.delayedCall(200, () => {
       this.events.emit('startRun');
-      this.scene.start('OfficeScene', { settings: this.#settings });
+      if (this.#settings !== undefined && this.#settings.hasLanguage) {
+        // Language already selected (returning from pause/defeat) → go to office
+        this.scene.start('OfficeScene', { settings: this.#settings });
+      } else {
+        // First boot → go to language selection
+        this.scene.start('LanguageSelectScene');
+      }
     });
   }
 

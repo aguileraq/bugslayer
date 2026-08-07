@@ -4,7 +4,6 @@ import { GAME_DIMENSIONS } from '../foundation';
 import { SessionSettings } from '../core/SessionSettings';
 import type { Language } from '../types';
 
-const MENU_SCENE_KEY = 'MenuScene';
 const FONT_FAMILY = 'Geist Pixel Square';
 
 const COLORS = {
@@ -197,9 +196,9 @@ export class LanguageSelectScene extends Phaser.Scene {
       focusedText.setColor('#ffffff');
     }
 
-    // Brief delay for visual feedback, then transition
+    // Brief delay for visual feedback, then transition to office
     this.time.delayedCall(300, () => {
-      this.scene.start(MENU_SCENE_KEY, {
+      this.scene.start('OfficeScene', {
         settings: this.#settings,
       });
     });

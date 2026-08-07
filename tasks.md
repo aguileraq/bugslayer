@@ -341,7 +341,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Branch Charge utiliza Hostile Attack corporal y CollisionSystem.
   - Terminado cuando: cada ataque es determinista y limpiable.
 
-- [ ] **TASK-502 — Implementar Encounter 4 y contenido Logic** **[Critical]**
+- [x] **TASK-502 — Implementar Encounter 4 y contenido Logic** **[Critical]**
   - Depende de: TASK-501.
   - Importar Arboleda, Boolean Beetle y tres Challenges Logic.
   - Terminado cuando: derrotarlo produce `finalSequenceReady`, no Victory.

@@ -127,11 +127,10 @@ export class MenuScene extends Phaser.Scene {
     // Visual feedback
     this.#startText?.setColor(COLORS.actionPressed);
 
-    // Emit startRun — in this milestone, the transition target is a placeholder
-    // or simply logs the event for verification purposes
+    // Emit startRun — transition to OfficeScene
     this.time.delayedCall(200, () => {
       this.events.emit('startRun');
-      // Future: this.scene.start('IntroScene') when SPEC-002 is implemented
+      this.scene.start('OfficeScene', { settings: this.#settings });
     });
   }
 

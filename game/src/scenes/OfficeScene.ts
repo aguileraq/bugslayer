@@ -101,6 +101,7 @@ export class OfficeScene extends Phaser.Scene {
 
   public create(): void {
     this.cameras.main.setBackgroundColor('#07111f');
+    this.renderTilemap();
     this.loadTilemapData();
     this.createPlayerSprite();
     this.createC3Indicator();
@@ -122,7 +123,29 @@ export class OfficeScene extends Phaser.Scene {
     }
   }
 
-  // ─── Tilemap ───────────────────────────────────────────────
+  // ─── Tilemap rendering ──────────────────────────────────────
+
+  private renderTilemap(): void {
+    // Create the visual tilemap using Phaser's tilemap system
+    const map = this.make.tilemap({ key: TILEMAP_KEY });
+    if (map === undefined) return;
+
+    const tileset = map.addTilesetImage('initial-office-base', TILESET_KEY);
+    if (tileset === null) return;
+
+    // Render tile layers
+    const groundLayer = map.createLayer('ground', tileset);
+    if (groundLayer !== null) {
+      groundLayer.setDepth(0);
+    }
+
+    const wallsLayer = map.createLayer('walls', tileset);
+    if (wallsLayer !== null) {
+      wallsLayer.setDepth(1);
+    }
+  }
+
+  // ─── Tilemap data ──────────────────────────────────────────
 
   private loadTilemapData(): void {
     // Extract collision rects and spawn positions from tilemap cache
@@ -185,8 +208,9 @@ export class OfficeScene extends Phaser.Scene {
   private createPlayerSprite(): void {
     this.#playerSprite = this.add
       .sprite(this.#player.x, this.#player.y, PLAYER_IDLE_KEY, 0)
-      .setOrigin(0, 0)
-      .setDisplaySize(32, 32);
+      .setOrigin(0.5, 0.75)
+      .setDisplaySize(48, 48)
+      .setDepth(10);
   }
 
   private updatePlayerSprite(): void {
@@ -421,8 +445,9 @@ export class OfficeScene extends Phaser.Scene {
     // Create V4LK sprite at spawn position
     this.#v4lkSprite = this.add
       .sprite(this.#v4lkSpawnPos.x, this.#v4lkSpawnPos.y, V4LK_KEY, 0)
-      .setOrigin(0, 0)
-      .setDisplaySize(32, 32);
+      .setOrigin(0.5, 0.75)
+      .setDisplaySize(40, 40)
+      .setDepth(10);
 
     // Materialization animation (simulated delay)
     this.time.delayedCall(800, () => {

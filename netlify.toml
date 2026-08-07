@@ -1,7 +1,7 @@
 [build]
   base = "game/"
   command = "npm ci --ignore-engines && npm run build"
-  publish = "game/dist/"
+  publish = "dist/"
 
 [build.environment]
   NODE_VERSION = "24"

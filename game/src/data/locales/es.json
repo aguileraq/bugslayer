@@ -6,6 +6,12 @@
   "boot.error.title": "Error de inicio",
   "boot.loading": "Cargando recursos… {progress}%",
   "boot.loadingLabel": "Progreso de carga: {progress}%",
+  "dialogue.office.v4lk.01": "Soy V4LK. No tenemos mucho tiempo.",
+  "dialogue.office.v4lk.02": "¿Qué eres? ¿De dónde saliste?",
+  "dialogue.office.v4lk.03": "Soy una IA de diagnóstico. Este sistema está comprometido.",
+  "dialogue.office.v4lk.04": "Necesito tu ayuda para encontrar la fuente de la corrupción. Sígueme.",
+  "dialogue.office.wake.01": "¿Qué ha pasado? ¿Dónde estoy?",
+  "dialogue.office.wake.02": "Esta oficina… algo no está bien.",
   "font.validation.sample": "¿Qué pasó? ¡El pingüino pidió música rápida y difícil, té y jalapeño!",
   "language.en.name": "English",
   "language.es.name": "Español",
@@ -17,5 +23,10 @@
   "languageSelect.title": "Selecciona tu idioma",
   "menu.start": "Iniciar demo",
   "menu.startLabel": "Iniciar el demo de {productTitle}",
-  "menu.title": "{productTitle}"
+  "menu.title": "{productTitle}",
+  "office.interact.prompt": "Pulsa {confirmKey} para interactuar",
+  "pause.continue": "Continuar",
+  "pause.exitToMenu": "Salir al menú",
+  "pause.restart": "Reiniciar",
+  "pause.title": "Pausa"
 }

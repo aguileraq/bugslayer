@@ -177,7 +177,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
 
 ## 7. Milestone 2 — SPEC-002 y oficina inicial
 
-- [ ] **TASK-200 — Crear y aprobar SPEC-002: oficina y V4LK** **[Critical]**
+- [x] **TASK-200 — Crear y aprobar SPEC-002: oficina y V4LK** **[Critical]**
   - Depende de: TASK-108.
   - Requisitos: REQ-INTRO-001, REQ-MOV-001, REQ-PAUSE-001.
   - Definir estados de la secuencia, colisiones, interacción C3, duración de carga y control de cámara.

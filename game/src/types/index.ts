@@ -1,5 +1,6 @@
 export * from './assets';
 export * from './challenge';
+export * from './dialogue';
 export * from './encounter';
 export * from './enemy';
 export * from './final-sequence';

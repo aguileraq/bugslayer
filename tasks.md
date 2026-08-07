@@ -189,7 +189,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Definir capas visibles, colisiones, spawn C4, interacción C3 y salida.
   - Terminado cuando: el mapa carga sin recursos faltantes y sus colisiones están verificadas.
 
-- [ ] **TASK-202 — Implementar Player e InputManager de exploración** **[Critical]**
+- [x] **TASK-202 — Implementar Player e InputManager de exploración** **[Critical]**
   - Depende de: TASK-201.
   - Requisitos: REQ-MOV-001.
   - Movimiento constante, sin inercia ni carrera, colisiones de tilemap y animaciones por dirección.

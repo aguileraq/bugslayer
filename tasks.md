@@ -329,7 +329,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
 
 ## 10. Milestone 5 — SPEC-005 y Boolean Beetle
 
-- [ ] **TASK-500 — Crear y aprobar SPEC-005: subjefe Logic** **[Critical]**
+- [x] **TASK-500 — Crear y aprobar SPEC-005: subjefe Logic** **[Critical]**
   - Depende de: TASK-404.
   - Requisitos: REQ-PROG-001, REQ-COMBAT-001.
   - Definir ataques, prioridades, áreas hostiles y transición hacia FinalSequence.

@@ -300,7 +300,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
 
 ## 9. Milestone 4 — SPEC-004 y encuentros múltiples
 
-- [ ] **TASK-400 — Resolver damageTargetMode de Mutable Widow y Cast Hornet** **[Critical]**
+- [x] **TASK-400 — Resolver damageTargetMode de Mutable Widow y Cast Hornet** **[Critical]**
   - Depende de: TASK-312.
   - Elegir `roundRobin`, `allActive` o `sharedPool` para cada Encounter.
   - Registrar la decisión en SPEC-004 y en sus JSON.

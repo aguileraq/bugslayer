@@ -226,73 +226,73 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Requisitos: REQ-STATE-001, REQ-COMBAT-001, REQ-CHL-001 a REQ-CHL-005, REQ-PROG-001, REQ-TUT-001, REQ-SCORE-001, REQ-PAUSE-001, REQ-DEFEAT-001, REQ-RESET-001.
   - Terminado cuando: un Encounter completo tiene comportamiento y pruebas definidos antes de implementarse.
 
-- [ ] **TASK-301 — Implementar GameStateMachine y PauseContext con pruebas** **[Critical]**
+- [x] **TASK-301 — Implementar GameStateMachine y PauseContext con pruebas** **[Critical]**
   - Depende de: TASK-300.
   - Implementar tabla del diseño, rechazo de estados inválidos, pausa manual y safety pause.
   - Probar que Challenge rechaza pausa manual y acepta pausa de visibilidad.
   - Terminado cuando: todas las transiciones críticas tienen cobertura.
 
-- [ ] **TASK-302 — Implementar RunManager y reset de sesión** **[Critical]**
+- [x] **TASK-302 — Implementar RunManager y reset de sesión** **[Critical]**
   - Depende de: TASK-301.
   - Requisitos: REQ-RESET-001.
   - Reiniciar Run desde oficina, salir al menú y conservar únicamente idioma.
   - Terminado cuando: tests prueban separación entre reinicio y regreso al menú.
 
-- [ ] **TASK-303 — Implementar ProjectilePool, ProjectileSystem y AttackPatternRegistry** **[Critical]**
+- [x] **TASK-303 — Implementar ProjectilePool, ProjectileSystem y AttackPatternRegistry** **[Critical]**
   - Depende de: TASK-300.
   - Requisitos: REQ-COMBAT-001, REQ-PERF-001.
   - Implementar infraestructura común y `parse.linearAttack`.
   - Terminado cuando: spawns deterministas se reciclan y respetan capacidad.
 
-- [ ] **TASK-304 — Implementar CollisionSystem e InvulnerabilityTracker** **[Critical]**
+- [x] **TASK-304 — Implementar CollisionSystem e InvulnerabilityTracker** **[Critical]**
   - Depende de: TASK-303.
   - Requisitos: REQ-COMBAT-001.
   - Hitbox del Player, daño hostil y ventana de 500 ms sin extensión.
   - Terminado cuando: pruebas cubren impacto efectivo, impactos ignorados y daño fatal.
 
-- [ ] **TASK-305 — Implementar Enemy, EncounterManager y CombatManager base** **[Critical]**
+- [x] **TASK-305 — Implementar Enemy, EncounterManager y CombatManager base** **[Critical]**
   - Depende de: TASK-303, TASK-304.
   - Requisitos: REQ-PROG-001.
   - Colección de Enemies, completionRule, damageTargetMode, limpieza y curación.
   - En el slice se utiliza un Parse Mantis.
   - Terminado cuando: Encounter 1 puede iniciar, completarse y transicionar.
 
-- [ ] **TASK-306 — Implementar AnswerValidator y ChallengeManager con pruebas** **[Critical]**
+- [x] **TASK-306 — Implementar AnswerValidator y ChallengeManager con pruebas** **[Critical]**
   - Depende de: TASK-300.
   - Requisitos: REQ-CHL-001, REQ-CHL-002, REQ-CHL-003.
   - Normalización, pools sin repetición, timers, expiración y cierre silencioso.
   - Terminado cuando: casos límite del requirements quedan cubiertos.
 
-- [ ] **TASK-307 — Implementar ambos widgets de Challenge e input** **[Critical]**
+- [x] **TASK-307 — Implementar ambos widgets de Challenge e input** **[Critical]**
   - Depende de: TASK-306.
   - Requisitos: REQ-CHL-002, REQ-CHL-003.
   - Typed con contador `n/12`; multiple-choice con teclado y ratón.
   - Terminado cuando: ambas modalidades pueden resolverse mientras el Player se mueve.
 
-- [ ] **TASK-308 — Implementar ScoreManager y PenaltyManager** **[Critical]**
+- [x] **TASK-308 — Implementar ScoreManager y PenaltyManager** **[Critical]**
   - Depende de: TASK-306.
   - Requisitos: REQ-CHL-004, REQ-CHL-005, REQ-SCORE-001.
   - Atomicidad de daño/Score/Streak y única penalización `extraProjectiles`.
   - Terminado cuando: pruebas comprueban piso cero, Streak, duración y cancelación.
 
-- [ ] **TASK-309 — Implementar HUD, feedback y overlays de combate** **[Critical]**
+- [x] **TASK-309 — Implementar HUD, feedback y overlays de combate** **[Critical]**
   - Depende de: TASK-307, TASK-308.
   - HUD, ChallengeOverlay, respuesta correcta, error, tiempo agotado y pausa bloqueada.
   - Terminado cuando: utiliza los assets UI aprobados y todos los textos son localizados.
 
-- [ ] **TASK-310 — Implementar Parse Mantis y TutorialOverlay** **[Critical]**
+- [x] **TASK-310 — Implementar Parse Mantis y TutorialOverlay** **[Critical]**
   - Depende de: TASK-305, TASK-309.
   - Requisitos: REQ-PROG-001, REQ-TUT-001.
   - Cargar Jardín de Compilación, enemigo, ataque lineal, tres Challenges Syntax y tutorial de tres pasos.
   - Terminado cuando: el Encounter puede completarse en español e inglés.
 
-- [ ] **TASK-311 — Implementar pausa, DefeatScene y reinicio** **[Critical]**
+- [x] **TASK-311 — Implementar pausa, DefeatScene y reinicio** **[Critical]**
   - Depende de: TASK-301, TASK-302, TASK-309.
   - Requisitos: REQ-PAUSE-001, REQ-DEFEAT-001, REQ-RESET-001.
   - PauseOverlay fuera de Challenge; safety pause conserva Challenge; derrota muestra estadísticas.
   - Terminado cuando: pruebas y smoke cubren los tres flujos.
 
-- [ ] **TASK-312 — Verificar vertical slice** **[Critical]**
+- [x] **TASK-312 — Verificar vertical slice** **[Critical]**
   - Depende de: TASK-310, TASK-311.
   - Recorrido: idioma→oficina→V4LK→Parse Mantis→Challenge typed y multiple-choice→transición; incluir derrota y reinicio.
   - Medir orden determinista en carrera entre respuesta letal y ataque letal.

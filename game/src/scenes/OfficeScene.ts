@@ -143,6 +143,84 @@ export class OfficeScene extends Phaser.Scene {
     if (wallsLayer !== null) {
       wallsLayer.setDepth(1);
     }
+
+    // Render props from the props atlas spritesheet
+    this.renderProps();
+
+    // Render machinery ambient effects
+    this.renderMachineryEffects();
+  }
+
+  private renderProps(): void {
+    const PROPS_KEY = 'prop.initial-office.atlas';
+    if (!this.textures.exists(PROPS_KEY)) return;
+
+    // Place props at positions defined in the tilemap object layer
+    const tilemapData = this.cache.tilemap.get(TILEMAP_KEY);
+    if (tilemapData === undefined || tilemapData.data === null) return;
+
+    const layers = (tilemapData.data as { layers?: unknown[] }).layers;
+    if (!Array.isArray(layers)) return;
+
+    for (const layer of layers) {
+      const layerObj = layer as { name?: string; type?: string; objects?: TilemapObject[] };
+      if (layerObj.name !== 'props' || layerObj.type !== 'objectgroup') continue;
+      if (!Array.isArray(layerObj.objects)) continue;
+
+      // Map prop names to frame indices in the atlas (64×64 frames, 4×4 = 16 frames)
+      const propFrames: Record<string, number> = {
+        'chair-c4': 0,
+        'monitor-c4': 1,
+        'chair-c3': 0,
+        'monitor-c3': 1,
+        'plant-corner': 2,
+        'water-cooler': 3,
+      };
+
+      for (const obj of layerObj.objects) {
+        const frameIndex = propFrames[obj.name];
+        if (frameIndex === undefined) continue;
+
+        this.add
+          .sprite(obj.x + obj.width / 2, obj.y + obj.height / 2, PROPS_KEY, frameIndex)
+          .setDisplaySize(obj.width, obj.height)
+          .setDepth(2);
+      }
+    }
+  }
+
+  private renderMachineryEffects(): void {
+    if (!this.textures.exists(MACHINERY_KEY)) return;
+
+    // Add ambient animated machinery at a few positions
+    const machineryPositions = [
+      { x: 176, y: 100, size: 32 },  // monitor-c4 area
+      { x: 560, y: 100, size: 32 },  // monitor-c3 area
+      { x: 832, y: 64, size: 32 },   // top-right corner
+    ];
+
+    for (const pos of machineryPositions) {
+      const sprite = this.add
+        .sprite(pos.x, pos.y, MACHINERY_KEY, 0)
+        .setDisplaySize(pos.size, pos.size)
+        .setDepth(3)
+        .setAlpha(0.7);
+
+      // Simple animation if frames available
+      const frameCount = this.textures.get(MACHINERY_KEY).getFrameNames(false).length;
+      if (frameCount > 1) {
+        const animKey = `machinery-ambient-${pos.x}`;
+        if (!this.anims.exists(animKey)) {
+          this.anims.create({
+            key: animKey,
+            frames: this.anims.generateFrameNumbers(MACHINERY_KEY, { start: 0, end: Math.min(frameCount - 1, 7) }),
+            frameRate: 4,
+            repeat: -1,
+          });
+        }
+        sprite.play(animKey);
+      }
+    }
   }
 
   // ─── Tilemap data ──────────────────────────────────────────

@@ -74,8 +74,8 @@ export class OfficeScene extends Phaser.Scene {
   #c3Indicator: Phaser.GameObjects.Rectangle | undefined = undefined;
   #c3BlinkTimer?: Phaser.Time.TimerEvent;
   #promptText: Phaser.GameObjects.Text | undefined = undefined;
-  #spawnC4 = { x: 224, y: 256 };
-  #v4lkSpawnPos = { x: 640, y: 288 };
+  #spawnC4 = { x: 740, y: 350 };
+  #v4lkSpawnPos = { x: 560, y: 360 };
 
   public constructor() {
     super({ key: 'OfficeScene' });
@@ -166,35 +166,73 @@ export class OfficeScene extends Phaser.Scene {
   private renderFallbackEnvironment(): void {
     const { width, height } = GAME_DIMENSIONS;
 
-    // Floor
-    this.add.rectangle(width / 2, height / 2, width, height, 0x1a2a3a).setDepth(0);
+    // Floor — rustic gray (piso gris rústico)
+    this.add.rectangle(width / 2, height / 2, width, height, 0x2a2f35).setDepth(0);
 
-    // Walls (darker border)
-    this.add.rectangle(width / 2, 32, width, 64, 0x0d1926).setDepth(1);
-    this.add.rectangle(width / 2, height - 30, width, 60, 0x0d1926).setDepth(1);
-    this.add.rectangle(32, height / 2, 64, height, 0x0d1926).setDepth(1);
-    this.add.rectangle(width - 32, height / 2, 64, height, 0x0d1926).setDepth(1);
+    // Walls — blue-gray (muros azul grisáceo)
+    this.add.rectangle(width / 2, 24, width, 48, 0x1a2a3d).setDepth(1); // top wall
+    this.add.rectangle(width / 2, height - 20, width, 40, 0x1a2a3d).setDepth(1); // bottom wall
+    this.add.rectangle(24, height / 2, 48, height, 0x1a2a3d).setDepth(1); // left wall
+    this.add.rectangle(width - 24, height / 2, 48, height, 0x1a2a3d).setDepth(1); // right wall
 
-    // Floor pattern (subtle grid)
-    const gridColor = 0x1e3448;
-    for (let x = 64; x < width - 64; x += 64) {
-      this.add.rectangle(x, height / 2, 1, height - 128, gridColor, 0.3).setDepth(0);
+    // Door — center of top wall (puerta cerrada en muro superior)
+    this.add.rectangle(width / 2, 24, 80, 48, 0x3d4f5c).setStrokeStyle(2, 0x5a7a8a).setDepth(2);
+
+    // Floor tile grid (subtle)
+    for (let x = 48; x < width - 48; x += 32) {
+      this.add.rectangle(x, height / 2, 1, height - 88, 0x353a40, 0.3).setDepth(0);
     }
-    for (let y = 64; y < height - 60; y += 64) {
-      this.add.rectangle(width / 2, y, width - 128, 1, gridColor, 0.3).setDepth(0);
+    for (let y = 48; y < height - 40; y += 32) {
+      this.add.rectangle(width / 2, y, width - 96, 1, 0x353a40, 0.3).setDepth(0);
     }
 
-    // Desk areas (cubicle outlines)
-    // C4 area (left)
-    this.add.rectangle(208, 160, 96, 64, 0x2a3f52).setStrokeStyle(1, 0x3d5a73).setDepth(1);
-    // C3 area (center-right)
-    this.add.rectangle(592, 160, 96, 64, 0x2a3f52).setStrokeStyle(1, 0x3d5a73).setDepth(1);
+    // === Cubicles 2×2 block (right side) ===
+    // C1 (top-left of block) — inactive
+    this.add.rectangle(560, 140, 160, 120, 0x1e2832).setStrokeStyle(1, 0x3a5060).setDepth(1);
+    this.add.rectangle(560, 100, 40, 24, 0x0d1520).setDepth(2); // monitor off
 
-    // Divider
-    this.add.rectangle(416, 192, 4, 192, 0x3d5a73).setDepth(1);
+    // C2 (top-right of block) — inactive
+    this.add.rectangle(740, 140, 160, 120, 0x1e2832).setStrokeStyle(1, 0x3a5060).setDepth(1);
+    this.add.rectangle(740, 100, 40, 24, 0x0d1520).setDepth(2); // monitor off
 
-    // Exit indicator (right side)
-    this.add.rectangle(920, 270, 16, 120, 0x69f7ff, 0.15).setDepth(1);
+    // C3 (bottom-left of block) — ACTIVE terminal with amber→cyan indicator
+    this.add.rectangle(560, 320, 160, 120, 0x1e2832).setStrokeStyle(1, 0x3a5060).setDepth(1);
+    this.add.rectangle(560, 280, 40, 24, 0x0d1520).setStrokeStyle(1, 0x69f7ff).setDepth(2); // monitor with cyan border
+    // Chair retracted (mark interaction point)
+    this.add.rectangle(560, 360, 28, 28, 0x3a4a5a).setDepth(2);
+
+    // C4 (bottom-right of block) — WAKE position
+    this.add.rectangle(740, 320, 160, 120, 0x1e2832).setStrokeStyle(1, 0x3a5060).setDepth(1);
+    this.add.rectangle(740, 280, 40, 24, 0x0d1520).setDepth(2); // monitor off
+    this.add.rectangle(740, 350, 28, 28, 0x4a3a2a).setDepth(2); // chair (Senior starts here)
+
+    // Cubicle dividers
+    this.add.rectangle(650, 230, 4, 240, 0x3a5060).setDepth(2); // vertical center
+    this.add.rectangle(650, 230, 340, 4, 0x3a5060).setDepth(2); // horizontal center
+
+    // === Left wall elements ===
+    // Server rack against left wall (rack contra muro izquierdo)
+    this.add.rectangle(72, 200, 48, 140, 0x1a2530).setStrokeStyle(1, 0x3a5a6a).setDepth(2);
+    // Rack lights
+    this.add.rectangle(72, 160, 8, 4, 0x00ff88, 0.8).setDepth(3);
+    this.add.rectangle(72, 180, 8, 4, 0x69f7ff, 0.6).setDepth(3);
+    this.add.rectangle(72, 200, 8, 4, 0x00ff88, 0.8).setDepth(3);
+
+    // === Top-right corner ===
+    // Tall plant (planta alta en esquina superior derecha)
+    this.add.rectangle(880, 80, 32, 48, 0x2a5a3a).setDepth(2); // pot + leaves
+    this.add.circle(880, 60, 20, 0x3a7a4a, 0.8).setDepth(2); // foliage
+
+    // === Bottom wall ===
+    // Air conditioning unit (aire acondicionado cara interior muro inferior)
+    this.add.rectangle(width / 2, height - 50, 120, 32, 0x4a5a6a).setStrokeStyle(1, 0x6a7a8a).setDepth(2);
+    // Air flow particles (expulsando aire hacia el cuarto)
+    for (let i = 0; i < 5; i++) {
+      this.add.rectangle(width / 2 - 40 + i * 20, height - 80, 2, 16, 0x69f7ff, 0.2 + i * 0.05).setDepth(2);
+    }
+
+    // === Exit indicator (right side, subtle glow) ===
+    this.add.rectangle(width - 30, height / 2, 12, 100, 0x69f7ff, 0.1).setDepth(1);
   }
 
   private renderProps(): void {

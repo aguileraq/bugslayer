@@ -195,26 +195,26 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Movimiento constante, sin inercia ni carrera, colisiones de tilemap y animaciones por dirección.
   - Terminado cuando: caminar funciona en cuatro direcciones y no atraviesa límites.
 
-- [ ] **TASK-203 — Implementar OfficeScene y flujo de despertar** **[Critical]**
+- [x] **TASK-203 — Implementar OfficeScene y flujo de despertar** **[Critical]**
   - Depende de: TASK-202.
   - Requisitos: REQ-INTRO-001, REQ-STATE-001.
   - Estados Intro→Dialogue→Exploration; despertar, diálogo y levantarse antes de ceder control.
   - Terminado cuando: el jugador no recibe control antes de finalizar el levantamiento.
 
-- [ ] **TASK-204 — Implementar computadora C3 y materialización de V4LK** **[Critical]**
+- [x] **TASK-204 — Implementar computadora C3 y materialización de V4LK** **[Critical]**
   - Depende de: TASK-203.
   - Requisitos: REQ-INTRO-001.
   - Objetivo parpadeante, zona de interacción, pulsación, carga y materialización estabilizada.
   - Habilitar salida solo al completar el flujo.
   - Terminado cuando: no se puede omitir la interacción ni activar desde una posición inválida.
 
-- [ ] **TASK-205 — Implementar DialogueOverlay localizado** **[Critical]**
+- [x] **TASK-205 — Implementar DialogueOverlay localizado** **[Critical]**
   - Depende de: TASK-105, TASK-203.
   - Requisitos: REQ-LOC-001, REQ-INTRO-001.
   - Avance mediante Enter/clic, nombre del hablante y textos en ambos idiomas.
   - Terminado cuando: español e inglés conservan geometría y no existen textos rasterizados.
 
-- [ ] **TASK-206 — Verificar Milestone 2** **[Critical]**
+- [x] **TASK-206 — Verificar Milestone 2** **[Critical]**
   - Depende de: TASK-204, TASK-205.
   - Pruebas de movimiento e interacción y smoke completo de oficina.
   - Terminado cuando: se recorre Menú→C4→C3→V4LK→salida sin errores.

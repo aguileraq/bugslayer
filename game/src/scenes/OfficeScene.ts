@@ -126,29 +126,75 @@ export class OfficeScene extends Phaser.Scene {
   // ─── Tilemap rendering ──────────────────────────────────────
 
   private renderTilemap(): void {
-    // Create the visual tilemap using Phaser's tilemap system
-    const map = this.make.tilemap({ key: TILEMAP_KEY });
-    if (map === undefined) return;
+    // Try to render tilemap with Phaser's tilemap system
+    let tilemapRendered = false;
 
-    const tileset = map.addTilesetImage('initial-office-base', TILESET_KEY);
-    if (tileset === null) return;
-
-    // Render tile layers
-    const groundLayer = map.createLayer('ground', tileset);
-    if (groundLayer !== null) {
-      groundLayer.setDepth(0);
+    try {
+      const map = this.make.tilemap({ key: TILEMAP_KEY });
+      if (map !== undefined) {
+        const tileset = map.addTilesetImage(
+          'initial-office-base',
+          TILESET_KEY,
+          32, 32, 0, 0,
+        );
+        if (tileset !== null) {
+          const groundLayer = map.createLayer('ground', tileset);
+          if (groundLayer !== null) {
+            groundLayer.setDepth(0);
+            tilemapRendered = true;
+          }
+          const wallsLayer = map.createLayer('walls', tileset);
+          if (wallsLayer !== null) {
+            wallsLayer.setDepth(1);
+          }
+        }
+      }
+    } catch {
+      // Tilemap rendering failed — use fallback
     }
 
-    const wallsLayer = map.createLayer('walls', tileset);
-    if (wallsLayer !== null) {
-      wallsLayer.setDepth(1);
+    // Fallback: if tilemap didn't render, draw a simple visual environment
+    if (!tilemapRendered) {
+      this.renderFallbackEnvironment();
     }
 
-    // Render props from the props atlas spritesheet
+    // Render props and machinery
     this.renderProps();
-
-    // Render machinery ambient effects
     this.renderMachineryEffects();
+  }
+
+  private renderFallbackEnvironment(): void {
+    const { width, height } = GAME_DIMENSIONS;
+
+    // Floor
+    this.add.rectangle(width / 2, height / 2, width, height, 0x1a2a3a).setDepth(0);
+
+    // Walls (darker border)
+    this.add.rectangle(width / 2, 32, width, 64, 0x0d1926).setDepth(1);
+    this.add.rectangle(width / 2, height - 30, width, 60, 0x0d1926).setDepth(1);
+    this.add.rectangle(32, height / 2, 64, height, 0x0d1926).setDepth(1);
+    this.add.rectangle(width - 32, height / 2, 64, height, 0x0d1926).setDepth(1);
+
+    // Floor pattern (subtle grid)
+    const gridColor = 0x1e3448;
+    for (let x = 64; x < width - 64; x += 64) {
+      this.add.rectangle(x, height / 2, 1, height - 128, gridColor, 0.3).setDepth(0);
+    }
+    for (let y = 64; y < height - 60; y += 64) {
+      this.add.rectangle(width / 2, y, width - 128, 1, gridColor, 0.3).setDepth(0);
+    }
+
+    // Desk areas (cubicle outlines)
+    // C4 area (left)
+    this.add.rectangle(208, 160, 96, 64, 0x2a3f52).setStrokeStyle(1, 0x3d5a73).setDepth(1);
+    // C3 area (center-right)
+    this.add.rectangle(592, 160, 96, 64, 0x2a3f52).setStrokeStyle(1, 0x3d5a73).setDepth(1);
+
+    // Divider
+    this.add.rectangle(416, 192, 4, 192, 0x3d5a73).setDepth(1);
+
+    // Exit indicator (right side)
+    this.add.rectangle(920, 270, 16, 120, 0x69f7ff, 0.15).setDepth(1);
   }
 
   private renderProps(): void {

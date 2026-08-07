@@ -1,5 +1,7 @@
 export * from './AttackPatternRegistry';
 export * from './CollisionSystem';
+export * from './EncounterManager';
+export * from './Enemy';
 export * from './InvulnerabilityTracker';
 export * from './Projectile';
 export * from './ProjectilePool';

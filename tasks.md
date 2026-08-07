@@ -364,18 +364,18 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Cargar `final-sequence.json`; ejecutar pasos deterministas y validar señales.
   - Terminado cuando: una señal faltante no deja la secuencia bloqueada sin diagnóstico.
 
-- [ ] **TASK-602 — Integrar corrupción, Monolith y minions infectados** **[Critical]**
+- [x] **TASK-602 — Integrar corrupción, Monolith y minions infectados** **[Critical]**
   - Depende de: TASK-601.
   - Importar assets aprobados, reactivar Boolean Beetle y presentar minions como entidades narrativas.
   - No crear HP, BossPhase ni Challenge para Mycelial Monolith.
   - Terminado cuando: la secuencia visual conserva posiciones y escalas aprobadas.
 
-- [ ] **TASK-603 — Integrar advertencia y extracción de V4LK** **[Critical]**
+- [x] **TASK-603 — Integrar advertencia y extracción de V4LK** **[Critical]**
   - Depende de: TASK-602.
   - Diálogo localizado, lock-on, extracción del Senior, extracción de V4LK y fundido.
   - Terminado cuando: el input de gameplay está bloqueado y ambos actores desaparecen correctamente.
 
-- [ ] **TASK-604 — Implementar DemoEndScene** **[Critical]**
+- [x] **TASK-604 — Implementar DemoEndScene** **[Critical]**
   - Depende de: TASK-603.
   - Mostrar tarjeta final localizada sin afirmar derrota del Monolith.
   - Terminado cuando: FinalSequence siempre termina en DemoEnd.

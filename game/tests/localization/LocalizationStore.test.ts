@@ -52,7 +52,7 @@ describe('initial locales', () => {
     expect(Object.keys(english.messages).sort()).toEqual(
       INITIAL_LOCALIZATION_KEYS,
     );
-    expect(INITIAL_LOCALIZATION_KEYS).toHaveLength(64);
+    expect(INITIAL_LOCALIZATION_KEYS).toHaveLength(70);
   });
 
   it('includes the required Spanish glyph repertoire', () => {

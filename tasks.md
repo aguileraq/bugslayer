@@ -163,13 +163,13 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Mostrar progreso y error bloqueante identificable.
   - Terminado cuando: Boot válido llega a LanguageSelect y un recurso inválido impide continuar.
 
-- [ ] **TASK-107 — Implementar LanguageSelectScene y MenuScene** **[Critical]**
+- [x] **TASK-107 — Implementar LanguageSelectScene y MenuScene** **[Critical]**
   - Depende de: TASK-105, TASK-106.
   - Requisitos: REQ-LOC-001, REQ-MENU-001.
   - Implementar selección bilingüe, confirmación, persistencia de sesión y menú localizado.
   - Terminado cuando: ambos idiomas llegan al menú y el idioma se conserva durante reinicio de escena.
 
-- [ ] **TASK-108 — Verificar Milestone 1** **[Critical]**
+- [x] **TASK-108 — Verificar Milestone 1** **[Critical]**
   - Depende de: TASK-107.
   - Ejecutar pruebas, build y flujo Boot→Idioma→Menú.
   - Confirmar que Geist Pixel Square no genera solicitudes externas.

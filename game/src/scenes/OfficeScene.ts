@@ -206,16 +206,64 @@ export class OfficeScene extends Phaser.Scene {
   // ─── Player sprite ─────────────────────────────────────────
 
   private createPlayerSprite(): void {
+    // Create animations from spritesheets
+    // player.idle: 384×512, 128×128 frames → 3 cols × 4 rows = 12 frames
+    if (!this.anims.exists('player-idle')) {
+      this.anims.create({
+        key: 'player-idle',
+        frames: this.anims.generateFrameNumbers(PLAYER_IDLE_KEY, { start: 0, end: 11 }),
+        frameRate: 6,
+        repeat: -1,
+      });
+    }
+
+    // player.walk: 384×512, 128×128 frames → 12 frames
+    if (!this.anims.exists('player-walk')) {
+      this.anims.create({
+        key: 'player-walk',
+        frames: this.anims.generateFrameNumbers(PLAYER_WALK_KEY, { start: 0, end: 11 }),
+        frameRate: 10,
+        repeat: -1,
+      });
+    }
+
+    // player.wake-stand: 384×384, 96×96 frames → 4×4 = 16 frames
+    if (!this.anims.exists('player-wake')) {
+      this.anims.create({
+        key: 'player-wake',
+        frames: this.anims.generateFrameNumbers(PLAYER_WAKE_KEY, { start: 0, end: 15 }),
+        frameRate: 12,
+        repeat: 0,
+      });
+    }
+
     this.#playerSprite = this.add
       .sprite(this.#player.x, this.#player.y, PLAYER_IDLE_KEY, 0)
       .setOrigin(0.5, 0.75)
-      .setDisplaySize(48, 48)
+      .setDisplaySize(64, 64)
       .setDepth(10);
   }
 
   private updatePlayerSprite(): void {
     if (this.#playerSprite === undefined) return;
     this.#playerSprite.setPosition(this.#player.x, this.#player.y);
+
+    // Play walk or idle animation based on movement
+    if (this.#player.moving) {
+      if (this.#playerSprite.anims.currentAnim?.key !== 'player-walk') {
+        this.#playerSprite.play('player-walk');
+      }
+      // Flip sprite based on horizontal direction
+      if (this.#player.direction === 'left') {
+        this.#playerSprite.setFlipX(true);
+      } else if (this.#player.direction === 'right') {
+        this.#playerSprite.setFlipX(false);
+      }
+    } else {
+      if (this.#playerSprite.anims.currentAnim?.key !== 'player-idle') {
+        this.#playerSprite.play('player-idle');
+      }
+    }
   }
 
   // ─── C3 indicator ──────────────────────────────────────────
@@ -297,17 +345,32 @@ export class OfficeScene extends Phaser.Scene {
   private startWakeSequence(): void {
     this.#phase = 'wake-animation';
 
-    // Simulate wake-stand animation (duration based on sprite frames)
-    // In full implementation, this plays player.wake-stand spritesheet
-    this.time.delayedCall(1200, () => {
-      this.#phase = 'wake-dialogue';
-      this.startDialogue(OFFICE_WAKE_DIALOGUE, () => {
-        // Wake dialogue complete → enable exploration
-        this.#stateMachine.transition('wakeDialogueComplete');
-        this.#phase = 'exploration';
-        this.showPromptIfNearC3();
+    // Play the wake-stand animation
+    if (this.#playerSprite !== undefined) {
+      this.#playerSprite.setDisplaySize(64, 64);
+      this.#playerSprite.play('player-wake');
+      this.#playerSprite.once('animationcomplete', () => {
+        // Switch back to idle sprite after wake animation
+        this.#playerSprite?.setTexture(PLAYER_IDLE_KEY, 0);
+        this.#playerSprite?.play('player-idle');
+        this.#phase = 'wake-dialogue';
+        this.startDialogue(OFFICE_WAKE_DIALOGUE, () => {
+          this.#stateMachine.transition('wakeDialogueComplete');
+          this.#phase = 'exploration';
+          this.showPromptIfNearC3();
+        });
       });
-    });
+    } else {
+      // Fallback if sprite not ready
+      this.time.delayedCall(1200, () => {
+        this.#phase = 'wake-dialogue';
+        this.startDialogue(OFFICE_WAKE_DIALOGUE, () => {
+          this.#stateMachine.transition('wakeDialogueComplete');
+          this.#phase = 'exploration';
+          this.showPromptIfNearC3();
+        });
+      });
+    }
   }
 
   // ─── Dialogue system ───────────────────────────────────────

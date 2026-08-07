@@ -335,7 +335,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Definir ataques, prioridades, áreas hostiles y transición hacia FinalSequence.
   - Terminado cuando: no introduce BossPhase ni Victory.
 
-- [ ] **TASK-501 — Implementar ataques de Boolean Beetle** **[Critical]**
+- [x] **TASK-501 — Implementar ataques de Boolean Beetle** **[Critical]**
   - Depende de: TASK-500.
   - Registrar Boolean Burst, XOR Crossfire, False Path y Branch Charge.
   - Branch Charge utiliza Hostile Attack corporal y CollisionSystem.

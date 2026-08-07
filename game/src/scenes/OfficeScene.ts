@@ -232,17 +232,24 @@ export class OfficeScene extends Phaser.Scene {
       this.#inputManager.keyUp(event.key);
     });
     this.input.on('pointerdown', () => {
-      // Click advances dialogue
-      if (this.#stateMachine.state === 'Dialogue') {
+      // Click advances dialogue (during Intro wake or Dialogue state)
+      if (this.#currentDialogue !== undefined) {
         this.advanceDialogue();
       }
     });
   }
 
   private processInput(state: GameState): void {
-    // Confirm (Enter)
+    // Dialogue advance: works during Intro (wake) and Dialogue states
+    const hasDialogue = this.#currentDialogue !== undefined;
+    if (hasDialogue && this.#inputManager.state.confirm) {
+      this.advanceDialogue();
+      return;
+    }
+
+    // Standard confirm (Enter) for Exploration/Dialogue/Paused
     if (this.#inputManager.hasConfirm(state)) {
-      if (state === 'Dialogue') {
+      if (state === 'Dialogue' && hasDialogue) {
         this.advanceDialogue();
       } else if (state === 'Exploration') {
         this.tryInteract();

@@ -353,7 +353,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
 
 ## 11. Milestone 6 — SPEC-006 y final narrativo
 
-- [ ] **TASK-600 — Crear y aprobar SPEC-006: Mycelial Monolith y extracción** **[Critical]**
+- [x] **TASK-600 — Crear y aprobar SPEC-006: Mycelial Monolith y extracción** **[Critical]**
   - Depende de: TASK-503.
   - Requisitos: REQ-FINAL-001.
   - Especificar pasos, señales, diálogos, duración, omisión de input y transición a DemoEnd.

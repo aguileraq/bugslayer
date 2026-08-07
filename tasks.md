@@ -312,7 +312,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Definir barras/estado, targeting, completionRule, daño y limpieza parcial.
   - Terminado cuando: cubre dos Widows y tres Hornets.
 
-- [ ] **TASK-402 — Implementar Mutable Widow** **[Critical]**
+- [x] **TASK-402 — Implementar Mutable Widow** **[Critical]**
   - Depende de: TASK-401.
   - Importar guarida, dos Enemies, Reassignment Volley, Scope Web y tres Challenges Variable.
   - Terminado cuando: ambas Widows respetan targeting y completionRule.

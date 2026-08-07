@@ -207,24 +207,21 @@ export class OfficeScene extends Phaser.Scene {
 
   private createPlayerSprite(): void {
     // Create animations from spritesheets
-    // player.idle: 384×512, 128×128 frames → 3 cols × 4 rows = 12 frames
-    if (!this.anims.exists('player-idle')) {
-      this.anims.create({
-        key: 'player-idle',
-        frames: this.anims.generateFrameNumbers(PLAYER_IDLE_KEY, { start: 0, end: 11 }),
-        frameRate: 6,
-        repeat: -1,
-      });
+    // player.idle: 384×512, 128×128 frames → 3 cols × 4 rows
+    // Row 0 (frames 0-2): down, Row 1 (3-5): left, Row 2 (6-8): right, Row 3 (9-11): up
+    if (!this.anims.exists('player-idle-down')) {
+      this.anims.create({ key: 'player-idle-down', frames: this.anims.generateFrameNumbers(PLAYER_IDLE_KEY, { start: 0, end: 2 }), frameRate: 4, repeat: -1 });
+      this.anims.create({ key: 'player-idle-left', frames: this.anims.generateFrameNumbers(PLAYER_IDLE_KEY, { start: 3, end: 5 }), frameRate: 4, repeat: -1 });
+      this.anims.create({ key: 'player-idle-right', frames: this.anims.generateFrameNumbers(PLAYER_IDLE_KEY, { start: 6, end: 8 }), frameRate: 4, repeat: -1 });
+      this.anims.create({ key: 'player-idle-up', frames: this.anims.generateFrameNumbers(PLAYER_IDLE_KEY, { start: 9, end: 11 }), frameRate: 4, repeat: -1 });
     }
 
-    // player.walk: 384×512, 128×128 frames → 12 frames
-    if (!this.anims.exists('player-walk')) {
-      this.anims.create({
-        key: 'player-walk',
-        frames: this.anims.generateFrameNumbers(PLAYER_WALK_KEY, { start: 0, end: 11 }),
-        frameRate: 10,
-        repeat: -1,
-      });
+    // player.walk: 384×512, 128×128 frames → same layout
+    if (!this.anims.exists('player-walk-down')) {
+      this.anims.create({ key: 'player-walk-down', frames: this.anims.generateFrameNumbers(PLAYER_WALK_KEY, { start: 0, end: 2 }), frameRate: 8, repeat: -1 });
+      this.anims.create({ key: 'player-walk-left', frames: this.anims.generateFrameNumbers(PLAYER_WALK_KEY, { start: 3, end: 5 }), frameRate: 8, repeat: -1 });
+      this.anims.create({ key: 'player-walk-right', frames: this.anims.generateFrameNumbers(PLAYER_WALK_KEY, { start: 6, end: 8 }), frameRate: 8, repeat: -1 });
+      this.anims.create({ key: 'player-walk-up', frames: this.anims.generateFrameNumbers(PLAYER_WALK_KEY, { start: 9, end: 11 }), frameRate: 8, repeat: -1 });
     }
 
     // player.wake-stand: 384×384, 96×96 frames → 4×4 = 16 frames
@@ -248,20 +245,16 @@ export class OfficeScene extends Phaser.Scene {
     if (this.#playerSprite === undefined) return;
     this.#playerSprite.setPosition(this.#player.x, this.#player.y);
 
-    // Play walk or idle animation based on movement
+    const dir = this.#player.direction;
     if (this.#player.moving) {
-      if (this.#playerSprite.anims.currentAnim?.key !== 'player-walk') {
-        this.#playerSprite.play('player-walk');
-      }
-      // Flip sprite based on horizontal direction
-      if (this.#player.direction === 'left') {
-        this.#playerSprite.setFlipX(true);
-      } else if (this.#player.direction === 'right') {
-        this.#playerSprite.setFlipX(false);
+      const walkKey = `player-walk-${dir}`;
+      if (this.#playerSprite.anims.currentAnim?.key !== walkKey) {
+        this.#playerSprite.play(walkKey);
       }
     } else {
-      if (this.#playerSprite.anims.currentAnim?.key !== 'player-idle') {
-        this.#playerSprite.play('player-idle');
+      const idleKey = `player-idle-${dir}`;
+      if (this.#playerSprite.anims.currentAnim?.key !== idleKey) {
+        this.#playerSprite.play(idleKey);
       }
     }
   }
@@ -352,7 +345,7 @@ export class OfficeScene extends Phaser.Scene {
       this.#playerSprite.once('animationcomplete', () => {
         // Switch back to idle sprite after wake animation
         this.#playerSprite?.setTexture(PLAYER_IDLE_KEY, 0);
-        this.#playerSprite?.play('player-idle');
+        this.#playerSprite?.play('player-idle-down');
         this.#phase = 'wake-dialogue';
         this.startDialogue(OFFICE_WAKE_DIALOGUE, () => {
           this.#stateMachine.transition('wakeDialogueComplete');

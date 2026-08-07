@@ -1,4 +1,6 @@
+export * from './AnswerValidator';
 export * from './AttackPatternRegistry';
+export * from './ChallengeManager';
 export * from './CollisionSystem';
 export * from './EncounterManager';
 export * from './Enemy';

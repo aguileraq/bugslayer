@@ -4,6 +4,7 @@ export * from './ChallengeManager';
 export * from './CollisionSystem';
 export * from './EncounterManager';
 export * from './Enemy';
+export * from './FinalSequenceController';
 export * from './InvulnerabilityTracker';
 export * from './MultipleChoiceModel';
 export * from './PauseController';

@@ -359,7 +359,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Especificar pasos, señales, diálogos, duración, omisión de input y transición a DemoEnd.
   - Terminado cuando: cada paso tiene inicio, final y fallback seguro.
 
-- [ ] **TASK-601 — Implementar FinalSequenceController y datos** **[Critical]**
+- [x] **TASK-601 — Implementar FinalSequenceController y datos** **[Critical]**
   - Depende de: TASK-600.
   - Cargar `final-sequence.json`; ejecutar pasos deterministas y validar señales.
   - Terminado cuando: una señal faltante no deja la secuencia bloqueada sin diagnóstico.

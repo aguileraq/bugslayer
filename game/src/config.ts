@@ -2,7 +2,8 @@ import Phaser from 'phaser';
 
 import { GAME_DIMENSIONS } from './foundation';
 import { BootScene } from './scenes/BootScene';
-import { LanguageSelectPlaceholderScene } from './scenes/LanguageSelectPlaceholderScene';
+import { LanguageSelectScene } from './scenes/LanguageSelectScene';
+import { MenuScene } from './scenes/MenuScene';
 
 export const gameConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -19,5 +20,5 @@ export const gameConfig: Phaser.Types.Core.GameConfig = {
     width: GAME_DIMENSIONS.width,
     height: GAME_DIMENSIONS.height,
   },
-  scene: [BootScene, LanguageSelectPlaceholderScene],
+  scene: [BootScene, LanguageSelectScene, MenuScene],
 };

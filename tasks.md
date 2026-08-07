@@ -322,7 +322,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Importar Router Aéreo, tres Enemies voladores, Type Sting, Casting Swarm y tres Challenges Type.
   - Terminado cuando: altura aérea, colisiones y completionRule son consistentes.
 
-- [ ] **TASK-404 — Pruebas de encuentros múltiples** **[Critical]**
+- [x] **TASK-404 — Pruebas de encuentros múltiples** **[Critical]**
   - Depende de: TASK-402, TASK-403.
   - Probar targeting, Enemy derrotado parcialmente, finalización, limpieza, curación y preservación de Score/Streak.
   - Terminado cuando: ambos Encounters avanzan sin estados residuales.

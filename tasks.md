@@ -380,7 +380,7 @@ Una tarea de implementación solo puede marcarse como completa cuando:
   - Mostrar tarjeta final localizada sin afirmar derrota del Monolith.
   - Terminado cuando: FinalSequence siempre termina en DemoEnd.
 
-- [ ] **TASK-605 — Verificar cierre narrativo** **[Critical]**
+- [x] **TASK-605 — Verificar cierre narrativo** **[Critical]**
   - Depende de: TASK-604.
   - Probar orden, diálogos, assets, ausencia de combate y final en ambos idiomas.
   - Terminado cuando: REQ-FINAL-001 está cubierto completamente.

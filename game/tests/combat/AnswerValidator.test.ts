@@ -153,8 +153,7 @@ describe('ChallengeManager', () => {
 
     const ids: string[] = [];
     for (let i = 0; i < 3; i++) {
-      manager.advanceInterval(5000);
-      const id = manager.advanceInterval(0);
+      const id = manager.advanceInterval(5000);
       if (id !== null) {
         ids.push(id);
         manager.present(id, 'typed');

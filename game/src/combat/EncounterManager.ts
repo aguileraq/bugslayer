@@ -5,6 +5,10 @@ export type DamageTargetMode = 'roundRobin' | 'allActive' | 'sharedPool';
 
 export type CompletionRuleType = 'allRequiredEnemiesDefeated' | 'sharedPoolDepleted';
 
+export type EncounterCompletionDestination =
+  | 'nextEncounter'
+  | 'finalSequence';
+
 export interface CompletionRule {
   readonly type: CompletionRuleType;
   readonly requiredEnemyIds?: readonly string[];
@@ -113,6 +117,15 @@ export class EncounterManager {
       default:
         return false;
     }
+  }
+
+  /**
+   * Resolve the next flow only after the configured completion rule is met.
+   * Boolean Beetle terminates encounter progression and enters FinalSequence.
+   */
+  public completionDestination(): EncounterCompletionDestination | null {
+    if (!this.isComplete()) return null;
+    return this.isLastEncounter ? 'finalSequence' : 'nextEncounter';
   }
 
   /**

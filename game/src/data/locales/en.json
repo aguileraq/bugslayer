@@ -53,6 +53,7 @@
   "languageSelect.option.enLabel": "Select English",
   "languageSelect.option.esLabel": "Select Español",
   "languageSelect.title": "Select your language",
+  "menu.changeLanguage": "Change language",
   "menu.start": "Start demo",
   "menu.startLabel": "Start the {productTitle} demo",
   "menu.title": "{productTitle}",

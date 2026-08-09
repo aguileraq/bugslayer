@@ -52,7 +52,7 @@ describe('initial locales', () => {
     expect(Object.keys(english.messages).sort()).toEqual(
       INITIAL_LOCALIZATION_KEYS,
     );
-    expect(INITIAL_LOCALIZATION_KEYS).toHaveLength(70);
+    expect(INITIAL_LOCALIZATION_KEYS).toHaveLength(71);
   });
 
   it('includes the required Spanish glyph repertoire', () => {
@@ -95,12 +95,14 @@ describe('LocalizationStore', () => {
 
     store.setLanguage('es');
     expect(store.translate('menu.start')).toBe('Iniciar demo');
+    expect(store.translate('menu.changeLanguage')).toBe('Cambiar idioma');
     expect(store.translate('boot.loading', { progress: 40 })).toBe(
       'Cargando recursos… 40%',
     );
 
     store.setLanguage('en');
     expect(store.translate('menu.start')).toBe('Start demo');
+    expect(store.translate('menu.changeLanguage')).toBe('Change language');
     expect(store.translate('boot.loading', { progress: 40 })).toBe(
       'Loading assets… 40%',
     );

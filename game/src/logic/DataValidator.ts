@@ -1098,7 +1098,10 @@ function validateFinalSequence(
   });
 
   let previousIndex = -1;
-  for (const requiredType of FINAL_SEQUENCE_STEP_TYPES) {
+  const requiredTypes = FINAL_SEQUENCE_STEP_TYPES.filter(
+    (type) => type !== 'fade',
+  );
+  for (const requiredType of requiredTypes) {
     const stepIndex = firstIndexByType.get(requiredType);
     if (stepIndex === undefined) {
       issues.add(

@@ -4,6 +4,8 @@ import { INITIAL_LOCALE_BUNDLES } from '../data';
 import { APP_TITLE, GAME_DIMENSIONS } from '../foundation';
 import { LocalizationStore } from '../localization/LocalizationStore';
 import { SessionSettings } from '../core/SessionSettings';
+import { DemoEndFlow } from '../core/DemoEndFlow';
+import { GameStateMachine } from '../core/GameStateMachine';
 
 const FONT_FAMILY = 'Geist Pixel Square';
 const DEMO_END_CARD_KEY = 'ui.demo-end.card';
@@ -18,6 +20,7 @@ const COLORS = {
 export class DemoEndScene extends Phaser.Scene {
   #settings?: SessionSettings;
   #localization?: LocalizationStore;
+  #flow?: DemoEndFlow;
 
   public constructor() {
     super({ key: 'DemoEndScene' });
@@ -32,6 +35,11 @@ export class DemoEndScene extends Phaser.Scene {
     }
 
     this.#localization = new LocalizationStore(INITIAL_LOCALE_BUNDLES, this.#settings);
+    const stateMachine =
+      data['stateMachine'] instanceof GameStateMachine
+        ? data['stateMachine']
+        : new GameStateMachine('DemoEnd');
+    this.#flow = new DemoEndFlow(this.#settings, stateMachine);
   }
 
   public create(): void {
@@ -101,11 +109,15 @@ export class DemoEndScene extends Phaser.Scene {
   }
 
   private restartRun(): void {
-    this.scene.start('OfficeScene', { settings: this.#settings });
+    const navigation = this.#flow?.restart();
+    if (navigation === undefined) return;
+    this.scene.start(navigation.destination, { settings: navigation.settings });
   }
 
   private exitToMenu(): void {
-    this.scene.start('MenuScene', { settings: this.#settings });
+    const navigation = this.#flow?.exitToMenu();
+    if (navigation === undefined) return;
+    this.scene.start(navigation.destination, { settings: navigation.settings });
   }
 
   private translate(key: string, params?: Readonly<Record<string, string | number | boolean>>): string {

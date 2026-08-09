@@ -204,14 +204,14 @@ describe('Multi-Encounter Integration', () => {
 
       // Build score and streak in Encounter 1
       runManager.applyCorrect(5000); // score: 160, streak: 1
-      runManager.applyCorrect(4000); // score: 160+150=310, streak: 2
+      runManager.applyCorrect(4000); // score: 160+160=320, streak: 2
 
       encounterManager.startEncounter();
       encounterManager.enemies[0]!.applyDamage(100);
       encounterManager.advance();
 
       // Score and streak remain after transition
-      expect(runManager.score).toBe(310);
+      expect(runManager.score).toBe(320);
       expect(runManager.streak).toBe(2);
       expect(runManager.maxStreak).toBe(2);
     });

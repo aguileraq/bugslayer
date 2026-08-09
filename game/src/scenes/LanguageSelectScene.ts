@@ -29,7 +29,7 @@ const LANGUAGE_OPTIONS: readonly LanguageOption[] = [
 ];
 
 export class LanguageSelectScene extends Phaser.Scene {
-  readonly #settings = new SessionSettings();
+  #settings = new SessionSettings();
   #focusIndex = 0;
   #confirmed = false;
   #optionTexts: Phaser.GameObjects.Text[] = [];
@@ -42,9 +42,16 @@ export class LanguageSelectScene extends Phaser.Scene {
     super({ key: 'LanguageSelectScene' });
   }
 
+  public init(data: Record<string, unknown>): void {
+    this.#settings =
+      data['settings'] instanceof SessionSettings
+        ? data['settings']
+        : new SessionSettings();
+  }
+
   public create(): void {
     this.#confirmed = false;
-    this.#focusIndex = 0;
+    this.#focusIndex = this.#settings.language === 'en' ? 1 : 0;
     this.#optionTexts = [];
 
     this.cameras.main.setBackgroundColor(COLORS.background);
@@ -196,9 +203,9 @@ export class LanguageSelectScene extends Phaser.Scene {
       focusedText.setColor('#ffffff');
     }
 
-    // Brief delay for visual feedback, then transition to office
+    // Brief delay for visual feedback, then present the localized menu.
     this.time.delayedCall(300, () => {
-      this.scene.start('OfficeScene', {
+      this.scene.start('MenuScene', {
         settings: this.#settings,
       });
     });

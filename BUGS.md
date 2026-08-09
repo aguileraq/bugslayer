@@ -4,7 +4,7 @@
 - **Baseline:** `e14db3c`
 - **Fecha de la prueba:** 2026-08-09
 - **Entorno:** Vite local, `http://127.0.0.1:5173`
-- **Estado general:** 4 bugs abiertos
+- **Estado general:** 3 bugs abiertos, 1 corregido y verificado
 
 ## Convención
 
@@ -16,7 +16,7 @@
 
 ## Checklist
 
-### [ ] BUG-001 — El menú principal duplica la composición visual
+### [x] BUG-001 — El menú principal duplica la composición visual
 
 - **Prioridad:** Alta
 - **Área:** UI / menú principal
@@ -24,15 +24,17 @@
 - **Resultado actual:** el fondo contiene el marco y la identidad visual de BugSlayer, pero encima aparece una ventana adicional con otro logo, el título `BugSlayer` y el botón `Start demo`. Esto produce logos y títulos duplicados, además de una composición que parece separada del diseño de fondo.
 - **Causa observada:** `MenuScene` dibuja `ui.menu.background` y después superpone un panel opaco, `ui.logo`, un título independiente y controles con geometría propia.
 - **Resultado esperado:** el menú interactivo debe formar parte de la composición visual existente. Debe mostrarse una sola identidad de BugSlayer, sin una ventana redundante y con el botón localizado integrado en el espacio previsto por el diseño.
+- **Corrección:** se eliminó la superposición de panel, logo y título. Las acciones `Iniciar demo / Start demo` y `Cambiar idioma / Change language` ahora utilizan los dos espacios del asset aprobado. También se restauró el flujo requerido `Boot → LanguageSelect → Menu → Office`.
+- **Verificación:** prueba manual a 960 × 540 en español e inglés con teclado y puntero; consola limpia durante el flujo de menú; `npm run check` aprobado.
 
 #### Criterios de cierre
 
-- [ ] Existe un solo logo y un solo título visualmente dominante.
-- [ ] No aparece un panel opaco que cubra o repita el diseño del fondo.
-- [ ] `Iniciar demo` / `Start demo` queda alineado e integrado con el arte aprobado.
-- [ ] Los estados normal, foco, hover y pulsado siguen siendo legibles.
-- [ ] El menú se valida en español e inglés a 960 × 540.
-- [ ] La navegación con teclado y puntero sigue funcionando.
+- [x] Existe un solo logo y un solo título visualmente dominante.
+- [x] No aparece un panel opaco que cubra o repita el diseño del fondo.
+- [x] `Iniciar demo` / `Start demo` queda alineado e integrado con el arte aprobado.
+- [x] Los estados normal, foco, hover y pulsado siguen siendo legibles.
+- [x] El menú se valida en español e inglés a 960 × 540.
+- [x] La navegación con teclado y puntero sigue funcionando.
 
 ---
 
